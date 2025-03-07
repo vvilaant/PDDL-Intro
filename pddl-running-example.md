@@ -1,7 +1,7 @@
 # Running Example: gripper Task with Four Balls
 
 ![robby](robby.png)
-There is a robot that can move between two rooms and pick up or drop balls with either of his two arms. Initially, all balls and the robot are in the first room. We want the balls to be in the second room.
+There is a robot that can move between two rooms and pick up or drop balls with either of his two arms, just one ball per hand at a time. Initially, all balls and the robot are in the first room. We want the balls to be in the second room.
 
 ## **Problem Description**
 - **Objects**: Two rooms, four balls, two robot arms.
