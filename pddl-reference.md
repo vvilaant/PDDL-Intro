@@ -1,8 +1,6 @@
 # Writing Planning Domains and Problems in PDDL
 
-PDDL contains STRIPS, ADL, and much more. Most planners, however, do not support full PDDL. The majority support only the STRIPS subset or some small extension of it. 
-
-Most planners do not support all elements of (any version of) PDDL. Moreover, many planners have their own small "eccentricities", meaning that they may interpret certain PDDL constructs incorrectly or require minor variations in syntax that do not align with the official language specification. Some examples:
+PDDL contains STRIPS, ADL, and much more. Most planners, however, do not support full PDDL. The majority support only the STRIPS subset or some small extension of it. Moreover, many planners have their own small "eccentricities", meaning that they may interpret certain PDDL constructs incorrectly or require minor variations in syntax that do not align with the official language specification. Some examples:
 
 - Some planners have an implicit constraint that all arguments to an action must be distinct.
 - Some planners require action preconditions and/or effects to be written as conjunctions (`(and ...)`), even when the precondition/effect contains only one atomic condition or no condition at all.
@@ -10,11 +8,11 @@ Most planners do not support all elements of (any version of) PDDL. Moreover, ma
 
 A useful rule of thumb when writing PDDL is to always use the simplest constructs sufficient to express the problem. Additionally, always read the documentation for the planner you are using.
 
-## What do we need for a PDDL Planning Task:
+## What do we need to define for modeling a planning problem in PDDL:
 - **Objects**: Relevant elements for the problem at hand.
-- **Predicates**: Properties of these objects and relations among them; (rule of thumb: a predicate applied to objects can be true or false).
+- **Predicates**: Properties of these objects and relations among them.
 - **Initial state**: The state of the world that we start in.
-- **Goal specification**: Things that we want to be true.
+- **Goal specification**: Facts that we ask to be true to consider the problem solved.
 - **Actions/Operators**: Ways of changing the state of the world.
 
 ### Where do we define these components:
@@ -30,15 +28,6 @@ Planning tasks specified in PDDL are separated into two files:
 
 - Comments in a PDDL file start with a semicolon (`;`) and extend to the end of the line.
 
-### Requirements Declaration
-
-Since PDDL is a general language and most planners support only a subset, domains may declare requirements. Common requirements include:
-
-- `:strips` → Basic STRIPS subset.
-- `:equality` → Uses the `=` predicate for equality.
-- `:typing` → Uses type declarations.
-- `:adl` → Uses ADL features (e.g., disjunctions, quantifiers, and conditional effects).
-
 ## Domain Definition
 
 The domain definition contains predicates and operators (actions). It may also include types, constants, and static facts, but many planners do not support these features.
@@ -48,21 +37,35 @@ The domain definition contains predicates and operators (actions). It may also i
 (define (domain DOMAIN_NAME)
   (:requirements [:strips] [:equality] [:typing] [:adl])
   (:predicates (PREDICATE_1_NAME ?A1 ?A2 ... ?AN)
-               (PREDICATE_2_NAME ?A1 ?A2 ... ?AN))
+               (PREDICATE_2_NAME ?A1 ?A2 ... ?AM) ...)
 
   (:action ACTION_1_NAME
-    [:parameters (?P1 ?P2 ... ?PN)]
+    [:parameters (?P1 ?P2 ... ?PK)]
     [:precondition PRECOND_FORMULA]
     [:effect EFFECT_FORMULA])
 
   (:action ACTION_2_NAME
-    ...)
+    [:parameters (?P1 ?P2 ... ?PL)]
+    [:precondition PRECOND_FORMULA]
+    [:effect EFFECT_FORMULA]))
+  ...
 )
 ```
 
 - Names (domain, predicate, action, etc.) typically use alphanumeric characters, hyphens (`-`), and underscores (`_`).
 - Predicate and action parameters start with `?`.
 - Predicate parameters specify the number of arguments but do not affect logic.
+
+## Requirements Declaration
+
+Since PDDL is a general language and most planners support only a subset, domains may declare requirements. Common requirements include:
+
+- `:strips` → Basic STRIPS subset.
+- `:equality` → Uses the `=` predicate for equality.
+- `:typing` → Uses type declarations.
+- `:adl` → Uses ADL features (e.g., disjunctions, quantifiers, and conditional effects).
+
+
 
 ## What Do Predicates Mean?
 
@@ -92,7 +95,7 @@ In an ADL domain, a precondition may in addition be:
 * A general negation, conjunction or disjunction: 
   * `(not CONDITION_FORMULA)`
   * `(and CONDITION_FORMULA1 ... CONDITION_FORMULA_N)`
-  * `(or CONDITION_FORMULA1 ... CONDITION_FORMULA_N)`
+  * `(or CONDITION_FORMULA1 ... CONDITION_FORMULA_M)`
 * A quantified formula:
   * `(forall (?V1 ?V2 ...) CONDITION_FORMULA)`
   * `(exists (?V1 ?V2 ...) CONDITION_FORMULA)`
@@ -103,8 +106,8 @@ In PDDL, the effects of an action are not explicitly divided into "adds" and "de
 
 In a STRIPS domain, an effect formula may consist of:
 * An added atom: `(PREDICATE_NAME ARG1 ... ARG_N)` The predicate arguments must be parameters of the action (or constants declared in the domain, if the domain has constants).
-* A deleted atom: `(not (PREDICATE_NAME ARG1 ... ARG_N))`
-* A conjunction of atomic effects: `(and ATOM1 ... ATOM_N)`
+* A deleted atom: `(not (PREDICATE_NAME ARG1 ... ARG_M))`
+* A conjunction of atomic effects: `(and ATOM1 ... ATOM_K)`
 
 The equality predicate `(=)` can of course not occur in an effect formula: no action can make two identical things be not identical!
 
@@ -122,7 +125,7 @@ The format of a (simple) problem definition is:
 (define (problem PROBLEM_NAME)
   (:domain DOMAIN_NAME)
   (:objects OBJ1 OBJ2 ... OBJ_N)
-  (:init ATOM1 ATOM2 ... ATOM_N)
+  (:init ATOM1 ATOM2 ... ATOM_M)
   (:goal CONDITION_FORMULA)
 )
 ```
