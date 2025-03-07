@@ -114,7 +114,8 @@ In an ADL domain, an effect formula may in addition contain:
 
 ## Problem Definition
 
-The problem definition includes objects, initial state, and goal.
+The problem definition contains the objects present in the problem instance, the initial state description and the goal. 
+The format of a (simple) problem definition is:
 
 ### **Example Problem Definition:**
 ```pddl
@@ -126,11 +127,22 @@ The problem definition includes objects, initial state, and goal.
 )
 ```
 
+**Note:** Some planners may require that the `:requirements` specification appears also in the problem definition (usually either directly before or directly after the `:domain` specification).
+
+The initial state description (the `:init` section) is simply a list of all the ground atoms that are true in the initial state. All other atoms are by definition false. The goal description is a formula of the same form as an action precondition. All predicates used in the initial state and goal description should naturally be declared in the corresponding domain.
+
+In difference to action preconditions, however, the initial state and goal descriptions should be *ground*, meaning that all predicate arguments should be object or constant names rather than parameters. (An exception is quantified goals in ADL domains, where of course the quantified variables may be used within the scope of the quantifier. Note, however, the even some planners that claim to support ADL do not support quantifiers in goals.)
+
 ## Typing in PDDL
 
-Typing allows defining **object categories**:
+PDDL has a (very) special syntax for declaring parameter and object types. If types are to be used in a domain, the domain should declare the requirement `:typing`  in `:requirements`. Type names have to be declared before they are used (which usually means before the `:predicates` declaration). This is done with the declaration:
+
 ```pddl
 (:types TYPE1 TYPE2 ...)
 (:objects OBJ1 - TYPE1 OBJ2 - TYPE2)
 ```
-If used, `:typing` must be declared in `:requirements`.
+
+To declare the type of a parameter of a predicate or action one writes `?X - TYPE_OF_X`. A list of parameters of the same type can be abbreviated to `?X ?Y ?Z - TYPE_OF_XYZ`. Note that the hyphen between parameter and type name has to be "free-standing", *i.e.* surrounded by whitespace.
+
+The syntax is the same for declaring types of objects in the problem definition.
+
