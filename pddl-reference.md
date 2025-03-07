@@ -80,28 +80,37 @@ Action definitions consist of:
 - **Preconditions** (optional)
 - **Effects** (optional, but essential for meaningful actions)
 
-### **Precondition Formulas:**
-```pddl
-(and (PREDICATE_NAME ARG1 ... ARG_N))
-```
-If `:equality` is used:
-```pddl
-(= ARG1 ARG2)   ; Equality
-(not (= ARG1 ARG2))  ; Negated equality
-```
+### Precondition Formulas
 
-### **Effect Formulas:**
-Effects in PDDL specify **changes to the world state**:
-```pddl
-(and (PREDICATE_NAME ARG1 ... ARG_N))  ; Add effects
-(and (not (PREDICATE_NAME ARG1 ... ARG_N)))  ; Delete effects
-```
+In a STRIPS domain, a precondition formula may be:
+* An atomic formula: `(PREDICATE_NAME ARG1 ... ARG_N)` The predicate arguments must be parameters of the action (or constants declared in the domain, if the domain has constants).
+* A conjunction of atomic formulas: `(and ATOM1 ... ATOM_N)`
 
-For ADL domains:
-```pddl
-(when CONDITION_FORMULA EFFECT_FORMULA)  ; Conditional effect
-(forall (?V1 ?V2 ...) EFFECT_FORMULA)  ; Universal effect
-```
+If the domain uses `:equality`, an atomic formula may also be of the form `(= ARG1 ARG2)`. Many planners that support equality also allow negated equality, which is written `(not (= ARG1 ARG2))`, even if they do not allow negation in any other part of the definition.
+
+In an ADL domain, a precondition may in addition be:
+* A general negation, conjunction or disjunction: 
+  * `(not CONDITION_FORMULA)`
+  * `(and CONDITION_FORMULA1 ... CONDITION_FORMULA_N)`
+  * `(or CONDITION_FORMULA1 ... CONDITION_FORMULA_N)`
+* A quantified formula:
+  * `(forall (?V1 ?V2 ...) CONDITION_FORMULA)`
+  * `(exists (?V1 ?V2 ...) CONDITION_FORMULA)`
+
+### Effect Formulas
+
+In PDDL, the effects of an action are not explicitly divided into "adds" and "deletes". Instead, negative effects (deletes) are denoted by negation.
+
+In a STRIPS domain, an effect formula may consist of:
+* An added atom: `(PREDICATE_NAME ARG1 ... ARG_N)` The predicate arguments must be parameters of the action (or constants declared in the domain, if the domain has constants).
+* A deleted atom: `(not (PREDICATE_NAME ARG1 ... ARG_N))`
+* A conjunction of atomic effects: `(and ATOM1 ... ATOM_N)`
+
+The equality predicate `(=)` can of course not occur in an effect formula: no action can make two identical things be not identical!
+
+In an ADL domain, an effect formula may in addition contain:
+* A conditional effect: `(when CONDITION_FORMULA EFFECT_FORMULA)` The interpretation is that the specified effect takes place only if the specified condition formula is true in the state where the action is executed. Conditional effects are usually placed within quantifiers.
+* A universally quantified formula: `(forall (?V1 ?V2 ...) EFFECT_FORMULA)`
 
 ## Problem Definition
 
