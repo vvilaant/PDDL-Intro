@@ -69,11 +69,9 @@ Since PDDL is a general language and most planners support only a subset, domain
 
 ## What Do Predicates Mean?
 
-Predicates in a domain definition **have no intrinsic meaning** beyond their name and parameter structure. Their interpretation depends on:
-- **Effects of actions** in the domain.
-- **Instances in the initial state** of the problem definition.
+One thing that is important to understand is that, apart from the special predicate `=`, predicates in a domain definition have no intrinsic meaning. The `:predicates` part of a domain definition specify only what are the predicate names used in the domain, and their number of arguments (and argument types, if the domain uses typing). The "meaning" of a predicate, in the sense of for what combinations of arguments it can be true and its relationship to other predicates, is determined by the effects that actions in the domain can have on the predicate, and by what instances of the predicate are listed as true in the initial state of the problem definition.
 
-Some planners distinguish **static predicates** (unchanged by actions) and **dynamic predicates** (modified by actions).
+It is common to make a distinction between **static** and **dynamic predicates**: a static predicate is not changed by any action. Thus in a problem, the true and false instances of a static predicate will always be precisely those listed in the initial state specification of the problem definition. Note that there is no syntactic difference between static and dynamic predicates in PDDL: they look exactly the same in the `:predicates` declaration part of the domain. Nevertheless, some planners may support different constructs around static and dynamic predicates, for example allowing static predicates to be negated in action preconditions but not dynamic ones.
 
 ## Action Definitions
 
