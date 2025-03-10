@@ -67,14 +67,14 @@ Podeu treballar amb qualsevol editor de text com ara `notepad++` o eines més so
 
 Primer de tot, **instal·leu el planner**
 
-Llegiu-vos el [fitxer de referència de PDDL](/PDDL-Intro/pddl-reference-ca.md).
+Llegiu-vos el [fitxer de referència de PDDL](/pddl-reference-ca.md).
 
 ## *Hanoi* ##
-- Descarregueu-vos els fitxers de la versió 1 de hanoi, familiaritzeu-vos amb el domini i proveu les instàncies que hi ha.
+- Descarregueu-vos els fitxers de la versió 1 de hanoi del directori [pddl](/pddl), familiaritzeu-vos amb el domini i proveu les instàncies que hi ha.
 - Descarregueu-vos els fitxers de la versió 2 de hanoi, familiaritzeu-vos amb el domini i proveu les instàncies que hi ha. Què ha canviat? Ha trigat més o menys a resoldre-les?
 - Proveu de resoldre les instancies amb el domini `hanoi-buggy.pddl` que hi ha al directori de la versió 2. Surten les mateixes solucions? Proveu d'executar amb optimització `-planner opt-blind' i ara, surten les mateixes solucions? perquè? on hi ha l'error de `hanoi-buggy.pddl`
 
-Llegiu-vos el [cas d'us del problema gripper](/PDDL-Intro/pddl-cas-dus.md)
+Llegiu-vos el [cas d'us del problema gripper](/pddl-cas-dus.md)
 
 ## *Gripper* ##
 - Descarregueu-vos els fitxers del domini gripper i les seves instàncies, familiaritzeu-vos amb el domini i proveu les instàncies que hi ha.
