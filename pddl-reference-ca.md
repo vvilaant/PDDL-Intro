@@ -3,7 +3,7 @@
 PDDL suporta STRIPS, ADL i molt més. No obstant això, la majoria de planners no admeten totes les funcionalitats definides pel PDDL. La majoria només admeten el subconjunt STRIPS o alguna petita extensió d'aquest. A més, molts planners tenen les seves pròpies "excentricitats", el que significa que poden interpretar certs constructes PDDL incorrectament o requerir petites variacions en la sintaxi que no s'alineen amb l'especificació oficial del llenguatge. Alguns exemples:
 
 - Alguns planners tenen una restricció implícita que tots els arguments d'una acció han de ser diferents.
-- D'altres requereixen que les precondicions i/o efectes de les accions siguin escrits com a conjuncions (`(and ...)`), fins i tot quan la precondició/efecte conté només una condició atòmica o cap condició.
+- D'altres requereixen que les precondicions i/o efectes de les accions siguin escrits com a conjuncions, és a dir `(and ...)`, fins i tot quan la precondició/efecte conté només una condició atòmica o cap condició.
 - La majoria de planners ignoren la part `:requirements` de la definició del domini. No obstant això, alguns planners poden fallar en analitzar una definició de domini si aquesta part falta o conté una paraula clau no reconeguda.
 
 Una pràctica útil a l'hora d'escriure PDDL és utilitzar un model el més simple possible per expressar el problema. Considera també llegir la documentació del planner que estàs utilitzant per saber quant més enllà d'STRIPS arriben.
@@ -32,7 +32,7 @@ Els problemes en PDDL es separen en dos fitxers:
 
 La definició del domini essencialment conté la declaració dels predicats i la definició del esquemes de les accions (sovint ens hi referim simplement com a accions o com a operadors). També pot incloure declaracions de tipus i la seva jerarquia, constants i fets estàtics, però bastants planners no admeten aquestes característiques.
 
-### **Sintaxi bàsica de la definició de dominis en PDDL:**
+### **El format de la definició de dominis en PDDL:**
 
 ```pddl
 (define (domain NOM_DEL_DOMINI)
@@ -100,25 +100,24 @@ Fixeu-vos que un quantificador pot quantificar més d'una variable. Hi ha planne
 
 ### Fórmules d'Efecte
 
-En PDDL, els efectes d'una acció no es divideixen explícitament en "adds" i "deletes". En canvi, els efectes negatius (deletes) es denoten mitjançant la negació.
+En PDDL, els efectes d'una acció no es divideixen explícitament en "adds" i "deletes". En canvi, els efectes negatius (deletes) es denoten mitjançant la negació, és a dir `(not ...)`
 
 En un domini STRIPS, una fórmula d'efecte pot consistir en:
-* Un àtom afegit: `(NOM_DEL_PREDICAT ARG1 ... ARG_N)` Els arguments del predicat han de ser paràmetres de l'acció (o constants declarades en el domini, si el domini té constants).
+* Un àtom afegit: `(NOM_DEL_PREDICAT ARG1 ... ARG_N)`. Els arguments del predicat han de ser paràmetres de l'acció (o constants declarades en el domini, si el domini té constants).
 * Un àtom eliminat: `(not (NOM_DEL_PREDICAT ARG1 ... ARG_M))`
-* Una conjunció d'efectes atòmics: `(and ATOM1 ... ATOM_K)`
+* Una conjunció d'efectes atòmics, ja siguin a afegir o a eliminar, és a dir, positius o negatius: `(and ATOM1 ... ATOM_K)`
 
 El predicat d'igualtat `(=)` òbviament no pot aparèixer en una fórmula d'efecte: cap acció pot fer que dues coses idèntiques no siguin idèntiques!
 
 En un domini ADL, una fórmula d'efecte pot contenir, a més:
-* Un efecte condicional: `(when FORMULA_CONDICIO FORMULA_EFECTE)` La interpretació és que l'efecte especificat té lloc només si la fórmula de condició especificada és certa en l'estat on s'executa l'acció. Els efectes condicionals normalment es col·loquen dins de quantificadors.
+* Un efecte condicional: `(when FORMULA_CONDICIO FORMULA_EFECTE)` La interpretació és que l'efecte especificat té lloc només si la fórmula de condició especificada és certa en l'estat on s'executa l'acció. Els efectes condicionals sovint es col·loquen dins de quantificadors.
 * Una fórmula quantificada universalment: `(forall (?V1 ?V2 ...) FORMULA_EFECTE)`
 
 ## Definició de Problema
 
-La definició de problema conté els objectes presents en la instància del problema, la descripció de l'estat inicial i l'objectiu. 
-El format d'una definició de problema (simple) és:
+La definició del problema (de vegades en diem la instància) conté els objectes presents en la instància del problema, la descripció de l'estat inicial i l'objectiu. 
 
-### **Exemple de Definició de Problema:**
+### **El format de la definició del problema:**
 ```pddl
 (define (problem NOM_DEL_PROBLEMA)
   (:domain NOM_DEL_DOMINI)
@@ -130,9 +129,9 @@ El format d'una definició de problema (simple) és:
 
 **Nota:** Alguns planners poden requerir que l'especificació `:requirements` aparegui també en la definició del problema (normalment just abans o just després de l'especificació `:domain`).
 
-La descripció de l'estat inicial (la secció `:init`) és simplement una llista de tots els àtoms bàsics que són certs en l'estat inicial. Tots els altres àtoms són, per definició, falsos. La descripció de l'objectiu és una fórmula de la mateixa forma que una precondició d'acció. Tots els predicats utilitzats en la descripció de l'estat inicial i l'objectiu haurien de ser declarats naturalment en el domini corresponent.
+La descripció de l'estat inicial (la secció `:init`) és simplement una llista de tots els àtoms ground que són certs en l'estat inicial. Tots els altres àtoms ground són, per assumpció del mon tancat, falsos en l'estat inicial. La descripció de l'objectiu és una fórmula de la mateixa forma que una precondició d'acció. Tots els predicats utilitzats en la descripció de l'estat inicial i l'objectiu haurien de ser declarats naturalment en el domini corresponent.
 
-A diferència de les precondicions d'acció, no obstant això, les descripcions de l'estat inicial i l'objectiu haurien de ser *bàsiques*, volent dir que tots els parametres de predicats haurien de ser noms d'objectes o constants en lloc de variables. (Una excepció són els objectius quantificats en dominis ADL, on òbviament les variables quantificades poden ser utilitzades dins del context del quantificador. No obstant això, tingueu en compte que fins i tot alguns planners que afirmen admetre ADL no admeten quantificadors en objectius.)
+A diferència de les precondicions d'acció, no obstant això, les descripcions de l'estat inicial i l'objectiu haurien de contenir àtoms *ground*, volent dir que tots els parametres de predicats haurien de ser noms d'objectes o constants en lloc de variables. Una excepció són els objectius quantificats en dominis ADL, on òbviament les variables quantificades poden ser utilitzades dins del context del quantificador. No obstant això, tingueu en compte que fins i tot alguns planners que afirmen admetre ADL no admeten quantificadors en objectius.
 
 ## Tipatge en PDDL
 
