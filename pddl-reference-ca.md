@@ -145,3 +145,36 @@ PDDL té una sintaxi (molt) especial per declarar els tipus de paràmetres i obj
 Per declarar el tipus d'un paràmetre d'un predicat o acció s'escriu `?X - TIPUS_DE_X`. Una llista de paràmetres del mateix tipus es pot abreviar a `?X ?Y ?Z - TIPUS_DE_XYZ`. Noteu que el guió entre el paràmetre i el nom del tipus ha de ser "independent", *és a dir*, envoltat d'espais en blanc.
 
 La sintaxi és la mateixa per declarar tipus d'objectes en la definició del problema.
+
+En la declaració de tipus hi podem establir jerarquies mitjançant la relació de **subtipatge**. Per defecte hi ha un tipus que domina tots els altres que és `object`, per tant tots els objectes que declarem seran segur de tipus `object`. D'altra banda, imaginem que volem declarar el tipus `lloc` i el tipus `agent`, i que d'agents hi pot haver un `robot` i una `grua`, llavors ho faríem així:
+```pddl
+(:types
+    lloc agent - object
+    robot grua - agent
+)
+```
+
+Seguint l'exemple, si tinguessim els objectes:
+```pddl
+(:objects
+  l1 l2 - lloc
+  r1 r2 r3 - robot
+  g1 g2 - grua)
+```
+i una acció fos:
+```pddl
+(:action a1
+ (:parameters ?x - lloc ?y - robot ?z - agent)
+ ...
+)
+```
+aquesta acció podria prendre com a paràmetre `?x` només `l1` o `l2`, com a `?y` només `r1` o `r2` o `r3`, i com a `?`, tots els agents, és a dir: `r1`, `r2`, `r3`, `g1` i `g2`.
+
+
+
+
+
+
+
+
+
