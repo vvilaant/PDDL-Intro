@@ -1,19 +1,19 @@
 # Dominis i Problemes de Planificació en PDDL
 
-PDDL conté STRIPS, ADL i molt més. No obstant això, la majoria de planners no admeten totes les funcionalitats de PDDL. La majoria només admeten el subconjunt STRIPS o alguna petita extensió d'aquest. A més, molts planners tenen les seves pròpies "excentricitats", el que significa que poden interpretar certs constructes PDDL incorrectament o requerir petites variacions en la sintaxi que no s'alineen amb l'especificació oficial del llenguatge. Alguns exemples:
+PDDL suporta STRIPS, ADL i molt més. No obstant això, la majoria de planners no admeten totes les funcionalitats definides pel PDDL. La majoria només admeten el subconjunt STRIPS o alguna petita extensió d'aquest. A més, molts planners tenen les seves pròpies "excentricitats", el que significa que poden interpretar certs constructes PDDL incorrectament o requerir petites variacions en la sintaxi que no s'alineen amb l'especificació oficial del llenguatge. Alguns exemples:
 
 - Alguns planners tenen una restricció implícita que tots els arguments d'una acció han de ser diferents.
-- Alguns planners requereixen que les precondicions i/o efectes de les accions siguin escrits com a conjuncions (`(and ...)`), fins i tot quan la precondició/efecte conté només una condició atòmica o cap condició.
+- D'altres requereixen que les precondicions i/o efectes de les accions siguin escrits com a conjuncions (`(and ...)`), fins i tot quan la precondició/efecte conté només una condició atòmica o cap condició.
 - La majoria de planners ignoren la part `:requirements` de la definició del domini. No obstant això, alguns planners poden fallar en analitzar una definició de domini si aquesta part falta o conté una paraula clau no reconeguda.
 
-Una pràctica útil a l'hora d'escriure PDDL és utilitzar un model el més simple possible per expressar el problema. Considera també llegir la documentació del planner que estàs utilitzant.
+Una pràctica útil a l'hora d'escriure PDDL és utilitzar un model el més simple possible per expressar el problema. Considera també llegir la documentació del planner que estàs utilitzant per saber quant més enllà d'STRIPS arriben.
 
 ## Què necessitem definir per modelar un problema en PDDL:
 
 - **Objectes**: Elements rellevants per al problema en qüestió.
 - **Predicats**: Propietats d'aquests objectes i relacions entre ells.
 - **Estat inicial**: L'estat del món des del qual comencem.
-- **Objectiu**: Fets que demanem que siguin certs per considerar el problema resolt.
+- **Objectiu**: Allò que volem que sigui cert o fals per considerar el problema resolt.
 - **Accions/Operadors**: Maneres de canviar l'estat del món.
 
 ### On definim aquests components:
@@ -30,9 +30,9 @@ Els problemes en PDDL es separen en dos fitxers:
 
 ## Definició de Domini
 
-La definició del domini conté predicats i operadors (accions). També pot incloure tipus, constants i fets estàtics, però bastants planners no admeten aquestes característiques.
+La definició del domini essencialment conté la declaració dels predicats i la definició del esquemes de les accions (sovint ens hi referim simplement com a accions o com a operadors). També pot incloure declaracions de tipus i la seva jerarquia, constants i fets estàtics, però bastants planners no admeten aquestes característiques.
 
-### **Exemple de Definició de Domini:**
+### **Sintaxi bàsica de la definició de dominis en PDDL:**
 
 ```pddl
 (define (domain NOM_DEL_DOMINI)
@@ -53,28 +53,27 @@ La definició del domini conté predicats i operadors (accions). També pot incl
 )
 ```
 
-- Els noms (domini, predicat, acció, etc.) normalment utilitzen caràcters alfanumèrics, guions (`-`) i guions baixos (`_`).
-- Els paràmetres de predicats i accions comencen amb `?`.
-- Els paràmetres de predicats especifiquen el nombre d'arguments però no afecten la lògica.
+- Els noms (de domini, de predicat, d'acció, etc.) normalment utilitzen caràcters alfanumèrics, guions (`-`) i guions baixos (`_`).
+- Els paràmetres de predicats i accions sempre comencen amb `?`. Els paràmetres de predicats especifiquen el nombre d'arguments però no afecten la lògica.
 
 ## Declaració de Requisits
 
-Com que PDDL és un llenguatge general i la majoria de planners només n'admeten un subconjunt, els dominis poden declarar requisits. Els requisits comuns inclouen:
+Com que PDDL és un llenguatge molt general i la majoria de planners només n'admeten un subconjunt, els dominis poden declarar requisits. Els requisits comuns inclouen:
 
 - `:strips` → Subconjunt bàsic STRIPS.
-- `:equality` → Utilitza el predicat `=` per a la igualtat.
-- `:typing` → Utilitza declaracions de tipus.
+- `:equality` → Utilitza el predicat `=` per a la igualtat entre objectes (assumint que si dos objectes tenen nom diferent és que són diferents).
+- `:typing` → Utilitza declaracions de tipus i permet declarar jerarquies de subtipatge entre ells.
 - `:adl` → Utilitza característiques ADL (per exemple, disjuncions, quantificadors i efectes condicionals).
 
 ## Què Signifiquen els Predicats?
 
-Una cosa important d'entendre és que, a part del predicat especial `=`, els predicats en una definició de domini no tenen un significat intrínsec. La part `:predicates` d'una definició de domini especifica només quins són els noms de predicats utilitzats en el domini, i el seu nombre d'arguments (i tipus d'arguments, si el domini utilitza tipus). El "significat" d'un predicat, en el sentit de per a quines combinacions d'arguments pot ser cert i la seva relació amb altres predicats, està determinat pels efectes que les accions en el domini poden tenir sobre el predicat, i per quines instàncies del predicat es llisten com a certes en l'estat inicial de la definició del problema.
+Una cosa important d'entendre és que, a part del predicat especial `=`, els predicats en una definició de domini no tenen un significat intrínsec. La part `(:predicates ...)` d'una definició de domini especifica només quins són els noms de predicats utilitzats en el domini, i el seu nombre d'arguments (i tipus d'arguments, si el domini utilitza tipus). El "significat" d'un predicat, en el sentit de per a quines combinacions d'arguments pot ser cert i la seva relació amb altres predicats, està determinat pels efectes que les accions en el domini poden tenir sobre el predicat, i per quines instàncies del predicat es llisten com a certes en l'estat inicial de la definició del problema.
 
-És comú fer una distinció entre **predicats estàtics** i **dinàmics**: un predicat estàtic no pot ser canviat per cap acció. Així, en un problema, les instàncies verdaderes i falses d'un predicat estàtic sempre seran precisament aquelles llistades en l'especificació de l'estat inicial de la definició del problema. Fixeu-vos que no hi ha cap diferència sintàctica entre predicats estàtics i dinàmics en PDDL: son exactament iguals en la part de declaració (`:predicates`) del domini. No obstant això, alguns planners poden admetre construccions diferents al voltant de predicats estàtics i dinàmics, per exemple, permetent que els predicats estàtics siguin negats en les precondicions d'accions però no els dinàmics.
+És comú fer la distinció entre **predicats estàtics** i **dinàmics**: un predicat estàtic no pot ser canviat per cap acció. Així, en un problema, les úniques instàncies d'un predicat estàtic que seran sempre certes, dit d'una altra maner, el únics àtoms que tenen aquell predicat que seran sempre certs, seran precisament els àtoms llistats en l'especificació de l'estat inicial de la definició del problema. Fixeu-vos que no hi ha cap diferència sintàctica entre predicats estàtics i dinàmics en PDDL: són exactament iguals en la part de declaració (`:predicates`) del domini. No obstant això, alguns planners poden admetre construccions diferents al voltant de predicats estàtics i dinàmics, per exemple, permetent que els àtoms de predicats estàtics siguin negats en les precondicions d'accions però no els dinàmics.
 
 ## Definicions d'Accions
 
-Les definicions d'accions consisteixen en:
+Les definicions d'accions consten de:
 - **Nom de l'Acció**
 - **Paràmetres** (opcional)
 - **Precondicions** (opcional)
@@ -88,7 +87,7 @@ En un domini STRIPS, una fórmula de precondició pot ser:
 
 Si el domini utilitza `:equality`, una fórmula atòmica també pot ser de la forma `(= ARG1 ARG2)`. Molts planners que admeten la igualtat també permeten la igualtat negada, que s'escriu `(not (= ARG1 ARG2))`, fins i tot si no permeten la negació en cap altra part de la definició.
 
-En un domini ADL, una precondició pot ser, a més:
+En un domini ADL, una fórmula de precondició pot ser, a més:
 * Una negació, conjunció o disjunció general: 
   * `(not FORMULA_CONDICIO)`
   * `(and FORMULA_CONDICIO1 ... FORMULA_CONDICIO_N)`
@@ -96,6 +95,8 @@ En un domini ADL, una precondició pot ser, a més:
 * Una fórmula quantificada:
   * `(forall (?V1 ?V2 ...) FORMULA_CONDICIO)`
   * `(exists (?V1 ?V2 ...) FORMULA_CONDICIO)`
+
+Fixeu-vos que un quantificador pot quantificar més d'una variable. Hi ha planner que demanen que les variables quantificades tinguin tipus, per exemple: `(forall (?x - object) ...)`
 
 ### Fórmules d'Efecte
 
