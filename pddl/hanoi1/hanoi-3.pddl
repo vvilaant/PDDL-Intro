@@ -1,4 +1,3 @@
-
 (define (problem hanoi3)
   (:domain hanoi)
   (:objects peg1 peg2 peg3 d1 d2 d3)

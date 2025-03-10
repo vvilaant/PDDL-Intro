@@ -1,0 +1,14 @@
+(define (domain hanoiv2)
+  (:requirements :adl)
+  (:types disc peg - object)
+  (:predicates (on ?x - disc ?y - object))
+
+  (:action move
+    :parameters (?d - disc ?from - object  ?to - object)
+    :precondition (and 
+                    (on ?d ?from) 
+                    (forall (?w - disc) 
+                        (and (not (on ?w ?d))
+                             (not (on ?w ?to)))))
+                             
+    :effect (and (on ?d ?to) (not (on ?d ?from)))))
