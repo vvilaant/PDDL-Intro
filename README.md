@@ -8,7 +8,7 @@ Com a *planner* farem servir [ENHSP: Expressive Numeric Heuristic Search Planner
 
 Aquest és un planner molt complet i competitiu i que permet una instal·lació molt senzilla que que permet descarregar un `.jar` executable amb JAVA 17. 
 
-# **Treball desde el vostre ordinador personal** #
+### **Treball desde el vostre ordinador personal** ###
 
 Per tant si us el voleu instal·lar en el vostre ordinador, seguiu les instruccions de la web i baixeu-vos la versió **enhsp-20** que és la que tenim a l'aula.
 
@@ -20,7 +20,7 @@ java -jar enhsp-20.jar -o [DOMINI.pddl] -f [PROBLEMA.pddl]
 
 
 
-# **Treball des de l'aula** #
+### **Treball des de l'aula** ###
 Per a treballar amb els ordinadors de l'aula cal que obriu un terminal `cmd` des de allà feu:
 ```console
 C:\Windows\System32> cd ..
@@ -49,7 +49,7 @@ enhsp -o [DOMINI.pddl] -f [PROBLEMA.pddl]
 ```
 (assumint que teniu el `.jar` i els fitxers `.pddl` al mateix directori de treball des de on invoqueu les comandes).
 
-# **Opcions del planner** #
+## **Opcions del planner** ##
 Si invoqueu:
 ```console
 java -jar enhsp-20.jar 
@@ -60,23 +60,23 @@ java -jar enhsp-20.jar -o [DOMINI.pddl] -f [PROBLEMA.pddl] -planner opt-blind
 ```
 Ens buscaria una solució òptima.
 
-# **Editors** #
+## **Editors** ##
 Podeu treballar amb qualsevol editor de text com ara `notepad++` o eines més sofisticades com `vscode` al qual li podeu afegir un plug-in per a PDDL.
 
-## **Tasques a fer**
+# **Tasques a fer** #
 
 Primer de tot, **instal·leu el planner**
 
 Llegiu-vos el [fitxer de referència de PDDL](/PDDL-Intro/pddl-reference-ca.md).
 
-# *Hanoi* #
+## *Hanoi* ##
 - Descarregueu-vos els fitxers de la versió 1 de hanoi, familiaritzeu-vos amb el domini i proveu les instàncies que hi ha.
 - Descarregueu-vos els fitxers de la versió 2 de hanoi, familiaritzeu-vos amb el domini i proveu les instàncies que hi ha. Què ha canviat? Ha trigat més o menys a resoldre-les?
 - Proveu de resoldre les instancies amb el domini `hanoi-buggy.pddl` que hi ha al directori de la versió 2. Surten les mateixes solucions? Proveu d'executar amb optimització `-planner opt-blind' i ara, surten les mateixes solucions? perquè? on hi ha l'error de `hanoi-buggy.pddl`
 
 Llegiu-vos el [cas d'us del problema gripper](/PDDL-Intro/pddl-cas-dus.md)
 
-# *Gripper* #
+## *Gripper* ##
 - Descarregueu-vos els fitxers del domini gripper i les seves instàncies, familiaritzeu-vos amb el domini i proveu les instàncies que hi ha.
 - Feu una *versió 2* del domini utilitzant tipus, quantificadors i negacions (passeu-lo a ADL), similarment com fa la versió 2 de Hanoi. És millor aquesta 2a versió de gripper que la primera?
 
