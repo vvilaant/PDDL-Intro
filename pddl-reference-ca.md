@@ -159,7 +159,8 @@ Seguint l'exemple, si tinguessim els objectes:
 (:objects
   l1 l2 - lloc
   r1 r2 r3 - robot
-  g1 g2 - grua)
+  g1 g2 - grua
+)
 ```
 i una acció fos:
 ```pddl
