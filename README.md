@@ -100,3 +100,5 @@ Exemple de laberint:
 #########
 ```
 on # és paret, A és la posició de l'agent, G és la posició de transformació a fantasma i S és la posició de sortida.
+
+* __3.3__. Les relacions entre posicions es podrien simplificar utilitzant els predicat `sobre`, `sota`, `esquerra` i `dreta`. Val la pena fer-ho? què es guanya?
