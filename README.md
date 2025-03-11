@@ -89,7 +89,7 @@ La relació entre caselles la poder establir amb el predicat `(adjacent ?x ?y ?z
 Cada domini ha de constar de la descripció del laberint dient com estan les caselles i on hi ha les parets, així com saber des de on comença l'agent i quina és la casella de sortida.
 El vostre planner us hauria de permetre trobar el camí més curt.
 
-Com a exercici extra, afegiu una casella tal que si l'agent hi passa es converteix en fantasma i per tant pot atravessar parets, això us hauria de permetre trobar camins més curts.
+Com a exercici extra, afegiu una casella tal que si l'agent hi passa es converteix en fantasma i per tant pot atravessar parets, això us hauria de permetre trobar camins més curts. 
 
 Exemple de laberint:
 
@@ -98,7 +98,7 @@ Exemple de laberint:
 ##     ##
 #  ##   S
 #  ######
-#     A #
+#  A   G#
 #########
 ```
-on # és paret, A és la posició de l'agent i S és la posició de sortida.
+on # és paret, A és la posició de l'agent, G és la posició de transformació a fantasma i S és la posició de sortida.
