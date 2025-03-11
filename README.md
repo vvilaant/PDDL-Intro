@@ -82,7 +82,7 @@ Llegiu-vos el [cas d'us del problema gripper](/pddl-cas-dus.md)
 ## 3 - *Laberint*
 
 * __3.1__. Finalment us demano que creeu un domini i unes instàncies per al problema del laberint. Aquest consisteix amb decidir els moviments que ha de fer un agent en un laberint per tal de poder sortir-ne.
-Com a pista us recomano que tingueu els objectes `loc_x_y` que representin cadascuna de les caselles del laberint a considerar. El laberint el podeu assumir quadriculat. També, cal saber la relació que tenen les caselles per poder saber si es pot passar d'una a l'altra, així com saber si hi ha una paret o no (l'agent no pot atravessar parets).
+Com a pista us recomano que tingueu els objectes `loc_x_y` que representin cadascuna de les caselles del laberint a considerar. El laberint el podeu assumir rectangular. També, cal saber la relació que tenen les caselles per poder saber si es pot passar d'una a l'altra, així com saber si hi ha una paret o no (l'agent no pot atravessar parets).
 La relació entre caselles la poder establir amb el predicat `(adjacent ?x ?y ?z)`, de manera que les relacions entre les caselles (1,1), (1,2) i (2,1) seran `(adjacent loc_1_1 loc_1_2 left), (adjacent loc_1_2 loc_1_2 right), (adjacent loc_1_1 loc_2_1 up), (adjacent loc_2_1 loc_1_1 down)`. 
 Cada domini ha de constar de la descripció del laberint dient com estan les caselles i on hi ha les parets, així com saber des de on comença l'agent i quina és la casella de sortida.
 El vostre planner us hauria de permetre trobar el camí més curt.
