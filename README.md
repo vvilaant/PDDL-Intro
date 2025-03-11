@@ -95,9 +95,10 @@ Exemple de laberint:
 
 ```
 #########
-##  #  ##
+##     ##
 #  ##   S
 #  ######
 #     A #
-#########```
+#########
+```
 on # és paret, A és la posició de l'agent i S és la posició de sortida.
