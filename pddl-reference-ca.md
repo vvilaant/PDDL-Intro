@@ -173,7 +173,9 @@ aquesta acció podria prendre com a paràmetre `?x` només `l1` o `l2`, com a `?
 
 
 
+## Referències
 
+Per a saber més de PDDL i planning en general us recomanem consultar la [wikipedia de planning](https://planning.wiki/). El material està molt bé, ben estructurat, molt complet d'acord amb els continguts del nostre curs i ple d'exemples il·lustratius.
 
 
 
