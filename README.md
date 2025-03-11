@@ -61,7 +61,7 @@ java -jar enhsp-20.jar -o [DOMINI.pddl] -f [PROBLEMA.pddl] -planner opt-blind
 Ens buscaria una solució òptima.
 
 ## **Editors** ##
-Podeu treballar amb qualsevol editor de text com ara `notepad++` o eines més sofisticades com `vscode` al qual li podeu afegir un plug-in per a PDDL.
+Podeu treballar amb qualsevol editor de text com ara `notepad++` o eines més sofisticades com `vscode` al qual li podeu afegir un [plug-in per a PDDL](https://marketplace.visualstudio.com/items?itemName=jan-dolejsi.pddl).
 
 # **Tasques a fer** #
 
