@@ -1,6 +1,6 @@
 # **Cas d'ús: el problema del Gripper amb Quatre Pilotes**
 
-![robby](robby.png)  
+![robby](img/robby.png)  
 Hi ha un robot que pot moure's entre dues habitacions i recollir o deixar anar pilotes amb qualsevol dels seus dos braços, però només pot portar una pilota per mà al mateix temps. Inicialment, totes les pilotes i el robot es troben a la primera habitació. L'objectiu és portar totes les pilotes a la segona habitació.
 
 ## **Descripció del Problema**
