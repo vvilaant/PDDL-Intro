@@ -1,4 +1,4 @@
-# **Sessió de laboratori de PDDL**
+# **Sessió de laboratori de Planning amb PDDL**
 
 En aquesta sessió us haureu de familiaritzar amb les eines (planner **ENHSP**) i el llenguatge de planificació que utilitzarem (**PDDL**).
 
