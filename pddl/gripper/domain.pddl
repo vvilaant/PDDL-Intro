@@ -5,7 +5,7 @@
 		(at-robby ?r)
 		(at-ball ?b ?r)
 		(free ?g)
-		(carry ?o ?g))
+		(carry ?g ?o))
 
    (:action move
        :parameters  (?from ?to)
@@ -19,7 +19,7 @@
        :parameters (?obj ?room ?gripper)
        :precondition  (and  (ball ?obj) (room ?room) (gripper ?gripper)
 			    (at-ball ?obj ?room) (at-robby ?room) (free ?gripper))
-       :effect (and (carry ?obj ?gripper)
+       :effect (and (carry ?gripper ?obj)
 		    (not (at-ball ?obj ?room)) 
 		    (not (free ?gripper))))
 
@@ -27,7 +27,7 @@
    (:action drop
        :parameters  (?obj  ?room ?gripper)
        :precondition  (and  (ball ?obj) (room ?room) (gripper ?gripper)
-			    (carry ?obj ?gripper) (at-robby ?room))
+			    (carry ?gripper ?obj) (at-robby ?room))
        :effect (and (at-ball ?obj ?room)
 		    (free ?gripper)
-		    (not (carry ?obj ?gripper)))))
+		    (not (carry ?gripper ?obj)))))
