@@ -14,7 +14,7 @@ Hi ha un robot que pot moure's entre dues habitacions i recollir o deixar anar p
   - La pilota x està solta dins l'habitació y? `(at-ball ?x ?y)` 
   - El braç x porta la pilota y? `(carry ?x ?y)`
 - **Estat Inicial**: Totes les pilotes i el robot són a la primera habitació. Els dos braços del robot estan buits.
-- **Objectiu**: Moure totes les pilotes a la segona habitació.
+- **Objectiu**: Moure unes pilotes a la segona habitació.
 - **Accions**: El robot pot moure's i recollir o deixar anar una pilota amb cada braç.
 
 ## **Objectes**
