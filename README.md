@@ -8,6 +8,8 @@ Com a *planner* farem servir [ENHSP: Expressive Numeric Heuristic Search Planner
 
 Aquest és un planner molt complet i competitiu i que permet una instal·lació molt senzilla que que permet descarregar un `.jar` executable amb JAVA 17. 
 
+Compte!!, us heu d'assegurar que teniu una versió de [JAVA](https://www.oracle.com/java/technologies/downloads/?er=221886) actualitzada al vostre ordinador. 
+
 ### **Treball desde el vostre ordinador personal** ###
 
 Per tant si us el voleu instal·lar en el vostre ordinador, seguiu les instruccions de la web i baixeu-vos la versió **enhsp-20** que és la que tenim a l'aula.
