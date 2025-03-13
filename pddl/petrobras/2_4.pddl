@@ -727,8 +727,8 @@
    (at_ cargo1 F1)  
    (at_ cargo2 F6)
    (at_ cargo3 F4)
-   (at_ cargo4 G4)
-  )
- )
+   (at_ cargo4 G4)))
+
+ (:metric minimize (total_fuel_used))
 
 )

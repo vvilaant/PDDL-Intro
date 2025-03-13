@@ -5,8 +5,6 @@
  (:objects
   ship1 - ship
   ship2 - ship
-  ship3 - ship
-  ship4 - ship
 
   P1 - port         ; rio
   P2 - port         ; santos
@@ -26,8 +24,6 @@
 
   cargo1 - cargo
   cargo2 - cargo
-  cargo3 - cargo
-  cargo4 - cargo
  )
 
  (:init
@@ -37,31 +33,19 @@
   (is_waiting_area A2)
   (at_ ship1 P1)
   (at_ ship2 P1)
-  (at_ ship3 P2)
-  (at_ ship4 P2)
   (docked ship1 P1)
   (docked ship2 P1)
-  (docked ship3 P2)
-  (docked ship4 P2)
 
   (= (current_fuel ship1) 600)
   (= (current_fuel ship2) 600)
-  (= (current_fuel ship3) 600)
-  (= (current_fuel ship4) 600)
 
   (= (current_load ship1) 0)
   (= (current_load ship2) 0)
-  (= (current_load ship3) 0)
-  (= (current_load ship4) 0)
 
   (= (fuel_capacity ship1) 600)
   (= (load_capacity ship1) 100)
   (= (fuel_capacity ship2) 600)
   (= (load_capacity ship2) 100)
-  (= (fuel_capacity ship3) 600)
-  (= (load_capacity ship3) 100)
-  (= (fuel_capacity ship4) 600)
-  (= (load_capacity ship4) 100)
 
   (= (current_docking_capacity P1) 1)
   (= (current_docking_capacity P2) 1)
@@ -102,13 +86,9 @@
 
   (at_ cargo1 P1)
   (at_ cargo2 P1)
-  (at_ cargo3 P2)
-  (at_ cargo4 P2)
 
   (= (weight cargo1) 20)
   (= (weight cargo2) 5)
-  (= (weight cargo3) 15)
-  (= (weight cargo4) 8)
 
 
 ; ==== DISTANCES ====
@@ -739,9 +719,7 @@
 (:goal
   (and
    (at_ cargo1 F1)  
-   (at_ cargo2 F6)
-   (at_ cargo3 F4)
-   (at_ cargo4 G4)))
+   (at_ cargo2 F6)))
 
  (:metric minimize (total_fuel_used))
 
