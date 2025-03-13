@@ -17,6 +17,15 @@ Un cop el descarregat, obriu un terminal i el podeu invocar:
 java -jar enhsp-20.jar -o [DOMINI.pddl] -f [PROBLEMA.pddl]
 ```
 (assumint que teniu el `.jar` i els fitxers `.pddl` al mateix directori de treball)
+Per exemple
+```console
+java -jar enhsp-20.jar -o hanoi.pddl -f hanoi-3.pddl
+```
+Fixeu-vos que les claus `[ ]` no hi van. Aquí estem assumint que `hanoi.pddl` i `hanoi-3.pddl` estan al directori de treball desde on estem executant la comanda. Si estiguessin dins un directori que està al directori de treball, per exemple un directori `hanoi`, la comanda a invocar seria:
+```console
+java -jar enhsp-20.jar -o hanoi\hanoi.pddl -f hanoi\hanoi-3.pddl
+```
+Compte perquè la barra per separar els directoris a linux i MacOs va al revés.
 
 
 
@@ -62,6 +71,11 @@ Ens buscaria una solució òptima.
 
 ## **Editors** ##
 Podeu treballar amb qualsevol editor de text com ara `notepad++` o eines més sofisticades com `vscode` al qual li podeu afegir un [plug-in per a PDDL](https://marketplace.visualstudio.com/items?itemName=jan-dolejsi.pddl).
+
+## **Planner online** ##
+Teniu un [entorn web per a poder editar i executar planners amb els vostre dominis i problemes](https://editor.planning.domains/).
+
+
 
 # **Tasques a fer** #
 
