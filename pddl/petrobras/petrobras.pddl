@@ -79,9 +79,8 @@
     (:action load
             :parameters (?p - port ?sh - ship ?c - cargo)
             :precondition (and
-			   (docked ?sh ?p)
-                           (>= (load_capacity ?sh) (+ (current_load ?sh) (weight ?c)))
-                          )
+                           (docked ?sh ?p)
+                           (>= (load_capacity ?sh) (+ (current_load ?sh) (weight ?c))))
 
             :effect (and 
                         (not (at_ ?c ?p))
@@ -93,8 +92,7 @@
             :parameters (?c - cargo ?p - platform ?sh - ship)
             :precondition (and
                             (docked ?sh ?p)
-                            (loaded ?c ?sh)
-                          )
+                            (loaded ?c ?sh))
             :effect (and
                         (decrease (current_load ?sh) (weight ?c))
                         (not (loaded ?c ?sh))
@@ -105,9 +103,7 @@
             :parameters (?sh - ship ?l - port)
             :precondition (and
                               (docked  ?sh ?l)
-                              (can_refuel ?l)
-                              (<= (+ (current_fuel ?sh) 200) (fuel_capacity ?sh))
-                              )
+                              (can_refuel ?l))
             :effect (and 
                         (when (<= (+ (current_fuel ?sh) 200) (fuel_capacity ?sh))
                             (increase (current_fuel ?sh) 200))
@@ -120,9 +116,7 @@
             :parameters (?sh - ship ?l - platform)
             :precondition (and
                               (docked  ?sh ?l)
-                              (can_refuel ?l)
-                              (<= (+ (current_fuel ?sh) 100) (fuel_capacity ?sh))
-                              )
+                              (can_refuel ?l))
             :effect (and
                         (when (<= (+ (current_fuel ?sh) 100) (fuel_capacity ?sh))
                              (increase (current_fuel ?sh) 100))
