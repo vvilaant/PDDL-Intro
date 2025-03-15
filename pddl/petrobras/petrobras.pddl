@@ -10,7 +10,7 @@
     (:types
      location locatable - object
      ship cargo - locatable
-     port waiting_area platform - location 
+     port platform - location 
     ) 
 
     (:predicates
