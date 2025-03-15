@@ -15,8 +15,6 @@
   F4 - platform
   G1 - platform
   G2 - platform
-  G3 - platform
-  G4 - platform
 
   cargo1 - cargo
   cargo2 - cargo
@@ -51,8 +49,6 @@
   (= (current_docking_capacity F4) 1)
   (= (current_docking_capacity G1) 1)
   (= (current_docking_capacity G2) 1)
-  (= (current_docking_capacity G3) 1)
-  (= (current_docking_capacity G4) 1)
   (= (total_docking_capacity P1) 2)
   (= (total_docking_capacity P2) 2)
   (= (total_docking_capacity F1) 1)
@@ -61,12 +57,10 @@
   (= (total_docking_capacity F4) 1)
   (= (total_docking_capacity G1) 1)
   (= (total_docking_capacity G2) 1)
-  (= (total_docking_capacity G3) 1)
-  (= (total_docking_capacity G4) 1)
 
   (can_refuel P1)
   (can_refuel P2)
-  (can_refuel G3)
+  (can_refuel G2)
 
 ; ==== CARGOS ====
 ; ================
@@ -92,8 +86,6 @@
   (= (consumption_empty F4 F4) 999)
   (= (consumption_empty G1 G1) 999)
   (= (consumption_empty G2 G2) 999)
-  (= (consumption_empty G3 G3) 999)
-  (= (consumption_empty G4 G4) 999)
 
   (= (consumption_full P1 P1) 999)
   (= (consumption_full P2 P2) 999)
@@ -103,8 +95,6 @@
   (= (consumption_full F4 F4) 999)
   (= (consumption_full G1 G1) 999)
   (= (consumption_full G2 G2) 999)
-  (= (consumption_full G3 G3) 999)
-  (= (consumption_full G4 G4) 999)
 
 ; ==== DISTANCES ====
 ; ===================
@@ -116,8 +106,6 @@
   (= (distance P1 F4) 200)
   (= (distance P1 G1) 350)
   (= (distance P1 G2) 400)
-  (= (distance P1 G3) 450)
-  (= (distance P1 G4) 420)
 
   (= (consumption_empty P1 P2) 40)
   (= (consumption_empty P1 F1) 60)
@@ -126,8 +114,6 @@
   (= (consumption_empty P1 F4) 40)
   (= (consumption_empty P1 G1) 70)
   (= (consumption_empty P1 G2) 80)
-  (= (consumption_empty P1 G3) 90)
-  (= (consumption_empty P1 G4) 84)
 
   (= (consumption_full P1 P2) 66)
   (= (consumption_full P1 F1) 100)
@@ -136,8 +122,6 @@
   (= (consumption_full P1 F4) 66)
   (= (consumption_full P1 G1) 116)
   (= (consumption_full P1 G2) 133)
-  (= (consumption_full P1 G3) 150)
-  (= (consumption_full P1 G4) 140)
 
   (= (distance P2 P1) 200)
   (= (distance P2 F1) 380)
@@ -146,8 +130,6 @@
   (= (distance P2 F4) 340)
   (= (distance P2 G1) 300)
   (= (distance P2 G2) 180)
-  (= (distance P2 G3) 280)
-  (= (distance P2 G4) 140)
 
   (= (consumption_empty P2 P1) 40)
   (= (consumption_empty P2 F1) 76)
@@ -156,8 +138,6 @@
   (= (consumption_empty P2 F4) 68)
   (= (consumption_empty P2 G1) 60)
   (= (consumption_empty P2 G2) 36)
-  (= (consumption_empty P2 G3) 56)
-  (= (consumption_empty P2 G4) 28)
 
   (= (consumption_full P2 P1) 66)
   (= (consumption_full P2 F1) 126)
@@ -166,8 +146,6 @@
   (= (consumption_full P2 F4) 113)
   (= (consumption_full P2 G1) 100)
   (= (consumption_full P2 G2) 60)
-  (= (consumption_full P2 G3) 93)
-  (= (consumption_full P2 G4) 46)
 
   (= (distance F1 P1) 300)
   (= (distance F1 P2) 380)
@@ -176,8 +154,6 @@
   (= (distance F1 F4) 120)
   (= (distance F1 G1) 468)
   (= (distance F1 G2) 580)
-  (= (distance F1 G3) 588)
-  (= (distance F1 G4) 600)
 
   (= (consumption_empty F1 P1) 60)
   (= (consumption_empty F1 P2) 76)
@@ -186,8 +162,6 @@
   (= (consumption_empty F1 F4) 24)
   (= (consumption_empty F1 G1) 93)
   (= (consumption_empty F1 G2) 116)
-  (= (consumption_empty F1 G3) 117)
-  (= (consumption_empty F1 G4) 120)
 
   (= (consumption_full F1 P1) 100)
   (= (consumption_full F1 P2) 126)
@@ -196,8 +170,6 @@
   (= (consumption_full F1 F4) 40)
   (= (consumption_full F1 G1) 156)
   (= (consumption_full F1 G2) 193)
-  (= (consumption_full F1 G3) 196)
-  (= (consumption_full F1 G4) 200)
 
   (= (distance F2 P1) 160)
   (= (distance F2 P2) 290)
@@ -206,8 +178,6 @@
   (= (distance F2 F4) 120)
   (= (distance F2 G1) 580)
   (= (distance F2 G2) 468)
-  (= (distance F2 G3) 600)
-  (= (distance F2 G4) 588)
 
   (= (consumption_empty F2 P1) 32)
   (= (consumption_empty F2 P2) 58)
@@ -216,8 +186,6 @@
   (= (consumption_empty F2 F4) 24)
   (= (consumption_empty F2 G1) 116)
   (= (consumption_empty F2 G2) 93)
-  (= (consumption_empty F2 G3) 120)
-  (= (consumption_empty F2 G4) 117)
 
   (= (consumption_full F2 P1) 53)
   (= (consumption_full F2 P2) 96)
@@ -226,8 +194,6 @@
   (= (consumption_full F2 F4) 40)
   (= (consumption_full F2 G1) 193)
   (= (consumption_full F2 G2) 156)
-  (= (consumption_full F2 G3) 200)
-  (= (consumption_full F2 G4) 196)
 
   (= (distance F3 P1) 280)
   (= (distance F3 P2) 320)
@@ -236,8 +202,6 @@
   (= (distance F3 F4) 120)
   (= (distance F3 G1) 420)
   (= (distance F3 G2) 380)
-  (= (distance F3 G3) 420)
-  (= (distance F3 G4) 580)
 
   (= (consumption_empty F3 P1) 56)
   (= (consumption_empty F3 P2) 64)
@@ -246,8 +210,6 @@
   (= (consumption_empty F3 F4) 24)
   (= (consumption_empty F3 G1) 84)
   (= (consumption_empty F3 G2) 76)
-  (= (consumption_empty F3 G3) 84)
-  (= (consumption_empty F3 G4) 116)
 
   (= (consumption_full F3 P1) 93)
   (= (consumption_full F3 P2) 106)
@@ -256,8 +218,6 @@
   (= (consumption_full F3 F4) 40)
   (= (consumption_full F3 G1) 140)
   (= (consumption_full F3 G2) 126)
-  (= (consumption_full F3 G3) 140)
-  (= (consumption_full F3 G4) 193)
 
   (= (distance F4 P1) 200)
   (= (distance F4 P2) 340)
@@ -266,8 +226,6 @@
   (= (distance F4 F3) 120)
   (= (distance F4 G1) 500)
   (= (distance F4 G2) 520)
-  (= (distance F4 G3) 560)
-  (= (distance F4 G4) 580)
 
   (= (consumption_empty F4 P1) 40)
   (= (consumption_empty F4 P2) 68)
@@ -276,8 +234,6 @@
   (= (consumption_empty F4 F3) 24)
   (= (consumption_empty F4 G1) 100)
   (= (consumption_empty F4 G2) 104)
-  (= (consumption_empty F4 G3) 112)
-  (= (consumption_empty F4 G4) 116)
 
   (= (consumption_full F4 P1) 66)
   (= (consumption_full F4 P2) 113)
@@ -286,8 +242,6 @@
   (= (consumption_full F4 F3) 40)
   (= (consumption_full F4 G1) 166)
   (= (consumption_full F4 G2) 173)
-  (= (consumption_full F4 G3) 186)
-  (= (consumption_full F4 G4) 193)
 
   (= (distance G1 P1) 350)
   (= (distance G1 P2) 300)
@@ -296,8 +250,6 @@
   (= (distance G1 F3) 420)
   (= (distance G1 F4) 500)
   (= (distance G1 G2) 200)
-  (= (distance G1 G3) 120)
-  (= (distance G1 G4) 260)
 
   (= (consumption_empty G1 P1) 70)
   (= (consumption_empty G1 P2) 60)
@@ -306,8 +258,6 @@
   (= (consumption_empty G1 F3) 84)
   (= (consumption_empty G1 F4) 100)
   (= (consumption_empty G1 G2) 40)
-  (= (consumption_empty G1 G3) 24)
-  (= (consumption_empty G1 G4) 52)
 
   (= (consumption_full G1 P1) 116)
   (= (consumption_full G1 P2) 100)
@@ -316,8 +266,6 @@
   (= (consumption_full G1 F3) 140)
   (= (consumption_full G1 F4) 166)
   (= (consumption_full G1 G2) 66)
-  (= (consumption_full G1 G3) 40)
-  (= (consumption_full G1 G4) 86)
 
   (= (distance G2 P1) 400)
   (= (distance G2 P2) 180)
@@ -326,8 +274,6 @@
   (= (distance G2 F3) 380)
   (= (distance G2 F4) 520)
   (= (distance G2 G1) 200)
-  (= (distance G2 G3) 260)
-  (= (distance G2 G4) 120)
 
   (= (consumption_empty G2 P1) 80)
   (= (consumption_empty G2 P2) 36)
@@ -336,8 +282,6 @@
   (= (consumption_empty G2 F3) 76)
   (= (consumption_empty G2 F4) 104)
   (= (consumption_empty G2 G1) 40)
-  (= (consumption_empty G2 G3) 52)
-  (= (consumption_empty G2 G4) 24)
 
   (= (consumption_full G2 P1) 133)
   (= (consumption_full G2 P2) 60)
@@ -346,68 +290,6 @@
   (= (consumption_full G2 F3) 126)
   (= (consumption_full G2 F4) 173)
   (= (consumption_full G2 G1) 66)
-  (= (consumption_full G2 G3) 86)
-  (= (consumption_full G2 G4) 40)
-
-  (= (distance G3 P1) 450)
-  (= (distance G3 P2) 280)
-  (= (distance G3 F1) 588)
-  (= (distance G3 F2) 600)
-  (= (distance G3 F3) 420)
-  (= (distance G3 F4) 560)
-  (= (distance G3 G1) 120)
-  (= (distance G3 G2) 260)
-  (= (distance G3 G4) 200)
-
-  (= (consumption_empty G3 P1) 90)
-  (= (consumption_empty G3 P2) 56)
-  (= (consumption_empty G3 F1) 117)
-  (= (consumption_empty G3 F2) 120)
-  (= (consumption_empty G3 F3) 84)
-  (= (consumption_empty G3 F4) 112)
-  (= (consumption_empty G3 G1) 24)
-  (= (consumption_empty G3 G2) 52)
-  (= (consumption_empty G3 G4) 40)
-
-  (= (consumption_full G3 P1) 150)
-  (= (consumption_full G3 P2) 93)
-  (= (consumption_full G3 F1) 196)
-  (= (consumption_full G3 F2) 200)
-  (= (consumption_full G3 F3) 140)
-  (= (consumption_full G3 F4) 186)
-  (= (consumption_full G3 G1) 40)
-  (= (consumption_full G3 G2) 86)
-  (= (consumption_full G3 G4) 66)
-
-  (= (distance G4 P1) 420)
-  (= (distance G4 P2) 140)
-  (= (distance G4 F1) 600)
-  (= (distance G4 F2) 588)
-  (= (distance G4 F3) 580)
-  (= (distance G4 F4) 580)
-  (= (distance G4 G1) 260)
-  (= (distance G4 G2) 120)
-  (= (distance G4 G3) 200)
-
-  (= (consumption_empty G4 P1) 84)
-  (= (consumption_empty G4 P2) 28)
-  (= (consumption_empty G4 F1) 120)
-  (= (consumption_empty G4 F2) 117)
-  (= (consumption_empty G4 F3) 116)
-  (= (consumption_empty G4 F4) 116)
-  (= (consumption_empty G4 G1) 52)
-  (= (consumption_empty G4 G2) 24)
-  (= (consumption_empty G4 G3) 40)
-
-  (= (consumption_full G4 P1) 140)
-  (= (consumption_full G4 P2) 46)
-  (= (consumption_full G4 F1) 200)
-  (= (consumption_full G4 F2) 196)
-  (= (consumption_full G4 F3) 193)
-  (= (consumption_full G4 F4) 193)
-  (= (consumption_full G4 G1) 86)
-  (= (consumption_full G4 G2) 40)
-  (= (consumption_full G4 G3) 66)
  )
 
 (:goal
@@ -415,7 +297,7 @@
    (at_ cargo1 F1)  
    (at_ cargo2 F4)
    (at_ cargo3 F4)
-   (at_ cargo4 G4)))
+   (at_ cargo4 G2)))
 
  (:metric minimize (total_fuel_used))
 
